@@ -243,6 +243,10 @@ interface AdhocParser {
 // Loosely inspired by
 // https://drafts.csswg.org/css-syntax/#parser-diagrams
 export function transpileStyleSheet(sheetSrc: string, srcUrl?: string): string {
+  if (sheetSrc.startsWith("@import")) {
+    return
+  }
+  
   const p: AdhocParser = {
     sheetSrc,
     index: 0,
